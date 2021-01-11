@@ -8,7 +8,7 @@ The blog posts are stored in Kintone. If you add a new blog post or edit an exis
 
 Deploy the example using [Vercel](https://vercel.com):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/teppeis/nextjs-kintone-blog-sample-isr&project-name=nextjs-kintone-blog-sample-isr&repository-name=nextjs-kintone-blog-sample-isr)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/teppeis/nextjs-kintone-blog-sample-ssg&project-name=nextjs-kintone-blog-sample-ssg&repository-name=nextjs-kintone-blog-sample-ssg)
 
 Required Environment variables:
 - `KINTONE_BASE_URL`: Like `https://<your-domain>.cybozu.com`
