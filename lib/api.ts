@@ -79,6 +79,22 @@ function convertRecordToPost(record: Record): PostType {
   };
 }
 
+export async function getAllSlugs(): Promise<string[]> {
+  const kintone = createClient();
+  const app = getTargetAppId();
+  const records = await kintone.record.getAllRecords({
+    app,
+    fields: ["slug"],
+  });
+  return records.map((record) => {
+    if (record.slug?.type !== "SINGLE_LINE_TEXT") {
+      console.error("Invalid record", { record });
+      throw new TypeError(`Invalid record ${JSON.stringify(record)}`);
+    }
+    return record.slug.value;
+  });
+}
+
 function getTargetAppId(): AppID {
   const appId = process.env.KINTONE_APP_ID;
   if (typeof appId !== "string") {

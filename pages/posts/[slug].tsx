@@ -8,7 +8,7 @@ import Layout from "../../components/layout";
 import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
 import PostTitle from "../../components/post-title";
-import { getPostBySlug } from "../../lib/api";
+import { getAllSlugs, getPostBySlug } from "../../lib/api";
 import { CMS_NAME } from "../../lib/constants";
 import markdownToHtml from "../../lib/markdownToHtml";
 import PostType from "../../types/post";
@@ -76,7 +76,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
           content,
         },
       },
-      revalidate: 10,
     };
   } catch {
     return { notFound: true };
@@ -84,8 +83,9 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 };
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
+  const slugs = await getAllSlugs();
   return {
-    paths: [],
-    fallback: "blocking",
+    paths: slugs.map((slug) => ({ params: { slug } })),
+    fallback: false,
   };
 };
